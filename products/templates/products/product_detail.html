@@ -1,0 +1,13 @@
+<!-- templates/products/product_detail.html -->
+<h2>{{ product.name }}</h2>
+
+<img src="{{ product.image.url }}" width="300" alt="{{ product.name }}">
+
+<p><strong>Description:</strong> {{ product.description }}</p>
+<p><strong>Price:</strong> ₹{{ product.price|floatformat:2 }}</p>
+
+<form method="get" action="{% url 'buy_now' product.pk %}">
+  <button type="submit">Buy Now</button>
+</form>
+
+<a href="{% url 'product_list' %}">← Back to Products</a>

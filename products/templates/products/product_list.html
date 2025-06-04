@@ -1,0 +1,29 @@
+<h1>Products</h1>
+
+<!-- Filter by Category -->
+<div>
+  <strong>Filter by category:</strong>
+  <a href="{% url 'product_list' %}">All</a>
+  {% for category in categories %}
+    {% if selected_category == category.id %}
+      <strong>{{ category.name }}</strong>
+    {% else %}
+      <a href="?category={{ category.id }}">{{ category.name }}</a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Products -->
+<ul>
+  {% for product in products %}
+    <li>
+      <img src="{{ product.image.url }}" width="150"><br>
+      <h2><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h2>
+      <p>{{ product.description|truncatewords:20 }}</p>
+      <p>Price: ₹{{ product.price|floatformat:2 }}</p>
+      <form method="get" action="{% url 'buy_now' product.pk %}">
+        <button type="submit">Buy Now</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>

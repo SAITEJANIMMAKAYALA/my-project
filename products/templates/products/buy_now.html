@@ -1,0 +1,9 @@
+<h2>Cash on Delivery</h2>
+<p>Product: <strong>{{ product.name }}</strong></p>
+<p>Price: ₹{{ product.price|floatformat:2 }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <p>Do you want to confirm Cash on Delivery for this product?</p>
+  <button type="submit">Confirm</button>
+</form>
